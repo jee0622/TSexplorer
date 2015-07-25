@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:drop="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <com.tscale.tsexplorer.base.DropEditText
+            android:id="@+id/address_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/textedit_leftpadding"
+            drop:dropMode="flower_parent"
+            android:background="@drawable/edittext_bg"
+            android:hint="@string/address_edit_hint"
+            android:layout_marginTop="1dp" />
+
+        <EditText
+            android:id="@+id/username_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address_edit"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="@dimen/textedit_leftpadding"
+            android:background="@drawable/edittext_bg"
+            android:hint="@string/username_edit_hint"
+            android:textSize="@dimen/address_text_size" />
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_below="@id/username_edit"
+            android:paddingLeft="@dimen/textedit_leftpadding"
+            android:background="@drawable/edittext_bg"
+            android:hint="@string/password_edit_hint"
+            android:inputType="textPassword"
+            android:textSize="@dimen/address_text_size" />
+
+        <Button
+            android:id="@+id/address_conn"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_edit"
+            android:background="@color/menu_background"
+            android:text="@string/connect_btn"
+            android:textColor="#fff"
+            android:textSize="@dimen/address_text_size" />
+    </RelativeLayout>
+
+</LinearLayout>

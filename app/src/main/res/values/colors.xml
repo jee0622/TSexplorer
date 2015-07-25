@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- menu-->
+    <color name="menu_background">#ff299dc1</color>
+    <color name="menu_divider">#000</color>
+    <color name="menu_text">#fff</color>
+
+    <color name="white">#fff</color>
+
+    <color name="option_text">#000</color>
+
+    <color name="scale_list_text">#336598</color>
+</resources>

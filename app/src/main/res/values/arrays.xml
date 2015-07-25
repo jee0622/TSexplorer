@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="menu_text">
+        <item>@string/menu_item_edit</item>
+        <item>@string/menu_item_others</item>
+        <item>@string/menu_item_setting</item>
+    </string-array>
+
+    <integer-array name="menu_icon">
+        <item>@mipmap/menu_icon_edit</item>
+        <item>@mipmap/menu_icon_others</item>
+        <item>@mipmap/menu_icon_setting</item>
+    </integer-array>
+
+
+    <string-array name="option_text">
+        <item>@string/option_item_add</item>
+        <item>@string/option_item_del</item>
+    </string-array>
+
+    <integer-array name="option_icon">
+        <item>@mipmap/option_icon_add</item>
+        <item>@mipmap/option_icon_del</item>
+    </integer-array>
+</resources>

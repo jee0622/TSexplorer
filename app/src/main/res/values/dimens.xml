@@ -1,0 +1,33 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- menu -->
+    <dimen name="menu_icon_size">24dp</dimen>
+    <dimen name="menu_text_size">24sp</dimen>
+    <dimen name="menu_icon_margin_left">16dp</dimen>
+    <dimen name="menu_icon_margin_top">16dp</dimen>
+    <dimen name="menu_text_margin_left">16dp</dimen>
+    <dimen name="menu_text_margin_top">16dp</dimen>
+
+
+    <dimen name="address_text_size">24sp</dimen>
+
+    <!--option-->
+    <dimen name="option_icon_size">24dp</dimen>
+    <dimen name="option_text_size">24sp</dimen>
+    <dimen name="option_icon_margin_left">8dp</dimen>
+    <dimen name="option_icon_margin_top">8dp</dimen>
+    <dimen name="option_text_margin_left">8dp</dimen>
+    <dimen name="option_text_margin_top">8dp</dimen>
+
+
+    <!-- HomeActivity-->
+    <dimen name="textedit_leftpadding">8dp</dimen>
+
+    <!-- Details-->
+    <dimen name="details_title">32sp</dimen>
+    <dimen name="details_pro_num">16sp</dimen>
+    <dimen name="details_content_margin_top">16dp</dimen>
+</resources>
