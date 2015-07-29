@@ -13,6 +13,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import com.tscale.tsexplorer.R;
 import com.tscale.tsexplorer.base.BaseFragment;
 import com.tscale.tsexplorer.base.WrapListView;
+import com.tscale.tsexplorer.details.AddProduct;
 import com.tscale.tsexplorer.details.ProductDetails;
 import com.tscale.tsexplorer.menu.MenuAdapter;
 import com.tscale.tsexplorer.scaletask.ScaleQueryTask;
@@ -259,10 +261,13 @@ public class ScaleChargeFragment extends BaseFragment implements AdapterView.OnI
     }
 
     private void addDialog() {
-        new AlertDialog.Builder(mActivity)
+        /*new AlertDialog.Builder(mActivity)
                 .setTitle("请输入").setIcon(android.R.drawable.ic_dialog_info)
                 .setView(new EditText(mActivity)).setPositiveButton("确定", optionListener)
-                .setNegativeButton("取消", optionListener).show();
+                .setNegativeButton("取消", optionListener).show();*/
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), AddProduct.class);
+        startActivity(intent);
     }
 
 

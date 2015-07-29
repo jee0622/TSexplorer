@@ -31,6 +31,14 @@
             android:name=".details.ProductDetails"
             android:label="@string/title_activity_product_details" >
         </activity>
+        <activity
+            android:name=".details.ProductDetailsFix"
+            android:label="@string/title_activity_product_details" >
+        </activity>
+        <activity
+            android:name=".details.AddProduct"
+            android:label="@string/title_activity_product_details" >
+        </activity>
     </application>
 
 </manifest>

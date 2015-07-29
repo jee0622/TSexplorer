@@ -176,4 +176,26 @@ public class SQLUtil {
         }
         return array;
     }
+
+    public static Integer fix(Connection conn, String id, String key, String value) {
+        int execResult = 0;
+        if (conn == null) {
+            return execResult;
+        }
+
+        Statement statement = null;
+        String sql = "UPDATE " + TABLE_NAME + " SET " + key + " = " + value + " where _id = " + id + ";";
+        Log.d("fix",sql);
+        try {
+            statement = conn.createStatement();
+            if (statement != null) {
+                execResult = statement.executeUpdate(sql);
+            }
+        } catch (SQLException e) {
+            execResult = 0;
+        }
+
+        return execResult;
+
+    }
 }

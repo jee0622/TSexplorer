@@ -1,9 +1,11 @@
 
 package com.tscale.tsexplorer.base;
 
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import roboguice.activity.RoboFragmentActivity;
 
@@ -77,6 +79,11 @@ public class SwipeBackActivity extends RoboFragmentActivity {
             return;
         }
         mIsFinishing = false;
+        View view = getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputManger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         super.finish();
     }
 }
