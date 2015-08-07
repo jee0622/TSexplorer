@@ -87,7 +87,7 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
     private void handleProductDate(int result) {
         if (result > 0) {
             Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
-            setResult(1);
+            setResult(RESULT_OK);
             this.finish();
         } else {
             Toast.makeText(this, "修改失败，请稍后重试", Toast.LENGTH_SHORT).show();
@@ -108,7 +108,7 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
             b.putString("value", valueFixed);
             Intent intent = new Intent();
             intent.putExtras(b);
-            setResult(2, intent);
+            setResult(RESULT_OK, intent);
             finish();
         } else {
             switch (v.getId()) {
@@ -120,5 +120,11 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
                     break;
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
     }
 }

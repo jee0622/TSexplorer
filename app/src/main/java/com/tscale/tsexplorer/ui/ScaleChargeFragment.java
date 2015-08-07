@@ -54,10 +54,6 @@ public class ScaleChargeFragment extends BaseFragment implements AdapterView.OnI
 
     private SortAdapter adapter;
 
-    /**
-     * 根据拼音来排列ListView里面的数据类
-     */
-    private PinyinComparator pinyinComparator;
 
     private List<SortModel> commodityList = new ArrayList<>();
 
@@ -102,7 +98,6 @@ public class ScaleChargeFragment extends BaseFragment implements AdapterView.OnI
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        pinyinComparator = new PinyinComparator();
         getAsyncData();
         sideBar.setTextView(dialog);
 
@@ -121,7 +116,6 @@ public class ScaleChargeFragment extends BaseFragment implements AdapterView.OnI
         });
         mClearEditText.clearFocus();
 
-//        Collections.sort(commodityList, pinyinComparator);
 
 
         //根据输入框输入值的改变来过滤搜索
@@ -303,7 +297,7 @@ public class ScaleChargeFragment extends BaseFragment implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        intent.setClass(getActivity(), ProductDetails.class);
+        intent.setClass(getActivity(), ProductDetails.class); 
         Bundle b = new Bundle();
         b.putString("id", commodityList.get(position).getId().toString());
         intent.putExtras(b);

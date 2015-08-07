@@ -41,8 +41,12 @@
     <string name="abbr">简写</string>
     <string name="abbr_spell">简写拼音</string>
     <string name="price">单价</string>
-    <string name="unit">单位</string>
+    <string name="unit_text">单位</string>
     <string name="confirm_fix">确定修改</string>
+
+
+    <!-- Add Product Activity-->
+    <string name="add_confirm_button">确认添加</string>
 
 
 </resources>

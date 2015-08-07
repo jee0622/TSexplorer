@@ -1,8 +1,6 @@
 package com.tscale.tsexplorer.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,9 +15,9 @@ public class Product {
 
     public String barcode;
 
-    public double price;
+    public String price;
 
-    public String unit;
+    public String unit_text;
 
     public String name_spell;
 
@@ -58,20 +56,20 @@ public class Product {
         this.barcode = barcode;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getUnit_text() {
+        return unit_text;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setUnit_text(String unit_text) {
+        this.unit_text = unit_text;
     }
 
     public String getName_spell() {
@@ -97,7 +95,7 @@ public class Product {
         a.put("abbr",getAbbr());
         a.put("barcode",getBarcode());
         a.put("price",getPrice());
-        a.put("unit",getUnit());
+        a.put("unit_text", getUnit_text());
         a.put("name_spell",getName_spell());
         a.put("abbr_spell",getAbbr_spell());
         return a;

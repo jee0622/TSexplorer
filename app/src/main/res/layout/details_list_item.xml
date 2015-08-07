@@ -9,23 +9,26 @@
         android:id="@+id/item_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/address_text_size"
-        android:text="Price:"/>
+        android:layout_centerVertical="true"
+        android:text="Price:"
+        android:textSize="@dimen/address_text_size" />
 
     <TextView
         android:id="@+id/item_value"
-        android:layout_marginRight="8dp"
-        android:layout_toLeftOf="@+id/right_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/address_text_size"
-        android:text="15 元/500g"/>
+        android:layout_centerInParent="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/right_arrow"
+        android:text="15 元/500g"
+        android:textSize="@dimen/address_text_size" />
 
     <ImageView
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/arrow_right"
         android:id="@+id/right_arrow"
         android:layout_width="@dimen/address_text_size"
-        android:layout_height="@dimen/address_text_size" />
+        android:layout_height="@dimen/address_text_size"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/arrow_right" />
 
 </RelativeLayout>

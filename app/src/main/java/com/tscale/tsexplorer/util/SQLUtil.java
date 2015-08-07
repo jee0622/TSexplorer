@@ -6,6 +6,8 @@ package com.tscale.tsexplorer.util;
 
 import android.util.Log;
 
+import com.tscale.tsexplorer.model.Product;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -149,7 +151,7 @@ public class SQLUtil {
                         object.put("abbr", result.getString("abbr"));
                         object.put("abbr_spell", result.getString("abbr_spell"));
                         object.put("price", result.getString("price"));
-                        object.put("unit", result.getString("unit_text"));
+                        object.put("unit_text", result.getString("unit_text"));
                         array.put(object);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -184,8 +186,8 @@ public class SQLUtil {
         }
 
         Statement statement = null;
-        String sql = "UPDATE " + TABLE_NAME + " SET " + key + " = " + value + " where _id = " + id + ";";
-        Log.d("fix",sql);
+        String sql = "UPDATE " + TABLE_NAME + " SET " + key + " = '" + value + "' where _id = " + id + ";";
+        Log.d("fix", sql);
         try {
             statement = conn.createStatement();
             if (statement != null) {
@@ -197,5 +199,39 @@ public class SQLUtil {
 
         return execResult;
 
+    }
+
+    public static Integer add(Connection conn, Product product) {
+        int execResult = 0;
+        ResultSet resultSet = null;
+        if (conn == null) {
+            return execResult;
+        }
+        Statement statement = null;
+        String sql = "INSERT INTO " + TABLE_NAME +
+                "(product_name,name_spell,product_num,price,unit_text,abbr,abbr_spell,barcode) " +
+                "VALUES('" + product.getProduct_name() + "','" + product.getName_spell() + "'," + product.getProduct_num() +
+                "," + product.getPrice() + ",'" + product.getUnit_text() + "','" + product.getAbbr() + "','" +
+                product.getAbbr_spell() + "'," + product.getBarcode() + ");";
+        Log.d("add", sql);
+        try {
+            statement = conn.createStatement();
+            if (statement != null) {
+                execResult = statement.executeUpdate(sql);
+            }
+        } catch (SQLException e) {
+            execResult = 0;
+        }
+        if (execResult != 0) {
+            try {
+                resultSet = statement.executeQuery("SELECT @@IDENTITY;");
+                resultSet.next();
+                execResult = resultSet.getInt(1);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return execResult;
     }
 }
