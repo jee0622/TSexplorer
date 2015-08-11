@@ -48,7 +48,7 @@ public class ScaleQueryTask extends AsyncTask<Void, Integer, Integer> {
         this.address = address;
         this.username = username;
         this.password = password;
-        this.url = "jdbc:mysql://" + address + "/p101";
+        this.url = "jdbc:mysql://" + address + "/p101?useUnicode=true&characterEncoding=utf-8";
         this.listener = listener;
         this.search = search;
     }

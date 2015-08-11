@@ -95,6 +95,7 @@
     <orderEntry type="library" exported="" name="mysql-connector-java-5.1.26-bin" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="zxing" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="javax.inject" level="project" />
   </component>

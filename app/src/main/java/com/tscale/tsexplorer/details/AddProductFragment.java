@@ -192,7 +192,6 @@ public class AddProductFragment extends BaseFragment implements View.OnClickList
         }
         product.setName_spell(characterParser.getSpelling(product.getProduct_name()));
         product.setAbbr_spell(characterParser.getSpelling(product.getAbbr()));
-        product.setProduct_num(product.getBarcode());
         ScaleAddTask scaleAddTask = new ScaleAddTask(mActivity, address, username, password, new AsyncCallBackListener() {
             @Override
             public void onAsyncTaskDone(JSONArray array) {

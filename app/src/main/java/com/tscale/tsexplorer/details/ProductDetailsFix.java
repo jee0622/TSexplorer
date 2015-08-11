@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.tscale.tsexplorer.R;
 import com.tscale.tsexplorer.base.SwipeBackActivity;
 import com.tscale.tsexplorer.scaletask.FixProductTask;
 import com.tscale.tsexplorer.util.AsyncCallBackListener;
+import com.tscale.tsexplorer.zxing.MipcaActivityCapture;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +27,7 @@ import roboguice.inject.InjectView;
  */
 public class ProductDetailsFix extends SwipeBackActivity implements View.OnClickListener {
 
+    private static final int CAMERA_REQUEST = 10;
     private String id;
     private String key;
     private String value;
@@ -44,6 +47,8 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
     @InjectView(R.id.details_fix_confirm)
     private Button confirm;
 
+    @InjectView(R.id.scan_button)
+    private ImageView camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,11 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
 
             }
         };
+
+        if (key_zh.contentEquals(getString(R.string.barcode))) {
+            camera.setVisibility(View.VISIBLE);
+            camera.setOnClickListener(this);
+        }
     }
 
     private void handleProductDate(int result) {
@@ -103,22 +113,28 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         String valueFixed = editText.getText().toString().trim();
-        if (id == null) {
-            Bundle b = getIntent().getExtras();
-            b.putString("value", valueFixed);
-            Intent intent = new Intent();
-            intent.putExtras(b);
-            setResult(RESULT_OK, intent);
-            finish();
-        } else {
-            switch (v.getId()) {
-                case R.id.details_fix_confirm:
+
+        switch (v.getId()) {
+            case R.id.details_fix_confirm:
+                if (id == null) {
+                    Bundle b = getIntent().getExtras();
+                    b.putString("value", valueFixed);
+                    Intent intent = new Intent();
+                    intent.putExtras(b);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
                     FixProductTask fixProductTask = new FixProductTask(this, address, username, password, id, key, valueFixed, listener);
                     fixProductTask.execute();
-                    break;
-                default:
-                    break;
-            }
+                }
+                break;
+            case R.id.scan_button:
+                Intent intent = new Intent();
+                intent.setClass(this, MipcaActivityCapture.class);
+                startActivityForResult(intent, CAMERA_REQUEST);
+                break;
+            default:
+                break;
         }
     }
 
@@ -126,5 +142,14 @@ public class ProductDetailsFix extends SwipeBackActivity implements View.OnClick
     public void onBackPressed() {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            Bundle b = data.getExtras();
+            String result = b.getString("result");
+            editText.setText(result);
+        }
     }
 }

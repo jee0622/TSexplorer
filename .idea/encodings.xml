@@ -5,8 +5,8 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/tscale/tsexplorer/ui/ClearEditText.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/tscale/tsexplorer/ui/SortAdapter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/tscale/tsexplorer/ui/SortModel.java" charset="UTF-8" />
-    <file url="file://E:/download/SortListView/SortListView/src/com/example/sortlistview/MainActivity.java" charset="GBK" />
-    <file url="file://E:/download/SortListView/SortListView/src/com/example/sortlistview/SortModel.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/tscale/tsexplorer/zxing/view/ViewfinderView.java" charset="UTF-8" />
+    <file url="file://E:/download/ZXingDemo/ZXingDemo/src/com/zijunlin/Zxing/Demo/CaptureActivity.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

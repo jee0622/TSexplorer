@@ -208,15 +208,26 @@ public class SQLUtil {
             return execResult;
         }
         Statement statement = null;
+
+        int max_product_num = 0;
+        try {
+            statement = conn.createStatement();
+            if (statement != null) {
+                resultSet = statement.executeQuery("SELECT MAX(product_num) FROM " + TABLE_NAME + " ;");
+                resultSet.next();
+                max_product_num = resultSet.getInt(1) + 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         String sql = "INSERT INTO " + TABLE_NAME +
                 "(product_name,name_spell,product_num,price,unit_text,abbr,abbr_spell,barcode) " +
-                "VALUES('" + product.getProduct_name() + "','" + product.getName_spell() + "'," + product.getProduct_num() +
+                "VALUES('" + product.getProduct_name() + "','" + product.getName_spell() + "'," + max_product_num +
                 "," + product.getPrice() + ",'" + product.getUnit_text() + "','" + product.getAbbr() + "','" +
                 product.getAbbr_spell() + "'," + product.getBarcode() + ");";
         Log.d("add", sql);
         try {
-            statement = conn.createStatement();
-            if (statement != null) {
+            if (max_product_num != 0) {
                 execResult = statement.executeUpdate(sql);
             }
         } catch (SQLException e) {

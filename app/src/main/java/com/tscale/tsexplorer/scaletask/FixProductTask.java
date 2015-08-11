@@ -45,7 +45,7 @@ public class FixProductTask extends AsyncTask<Void, Integer, Integer> {
         this.password = password;
         this.key = key;
         this.value = value;
-        this.url = "jdbc:mysql://" + address + "/p101";
+        this.url = "jdbc:mysql://" + address + "/p101?useUnicode=true&characterEncoding=utf-8";
         this.listener = listener;
 
     }
