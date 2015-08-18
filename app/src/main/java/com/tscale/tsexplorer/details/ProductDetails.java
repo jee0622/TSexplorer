@@ -5,11 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 import com.tscale.tsexplorer.R;
-import com.tscale.tsexplorer.base.SwipeBackActivity;
 
 import roboguice.activity.RoboFragmentActivity;
 
-public class ProductDetails extends SwipeBackActivity {
+public class ProductDetails extends RoboFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

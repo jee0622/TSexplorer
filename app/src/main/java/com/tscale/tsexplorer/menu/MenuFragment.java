@@ -3,9 +3,9 @@ package com.tscale.tsexplorer.menu;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +15,11 @@ import android.widget.ListView;
 
 import com.tscale.tsexplorer.R;
 import com.tscale.tsexplorer.base.BaseFragment;
+import com.tscale.tsexplorer.setting.SettingFragment;
 import com.tscale.tsexplorer.slidingmenu.SlidingMenu;
+import com.tscale.tsexplorer.ui.FormFragment;
 import com.tscale.tsexplorer.ui.ScaleChargeActivity;
 import com.tscale.tsexplorer.ui.ScaleChargeFragment;
-import com.tscale.tsexplorer.setting.SettingFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,17 +32,11 @@ import java.util.Map;
 public class MenuFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
 
-    private ListView menuListView;
-
-
-    private MenuAdapter adapter;
-
-    private List<Map<String, Object>> mapList = new ArrayList<>();
-
     private final String[] menuFrom = new String[]{"icon", "text"};
-
     private final int[] menuTo = new int[]{R.id.menu_item_icon, R.id.menu_item_text};
-
+    private ListView menuListView;
+    private MenuAdapter adapter;
+    private List<Map<String, Object>> mapList = new ArrayList<>();
     private int index = 0;
 
     private SlidingMenu sm;
@@ -111,7 +106,7 @@ public class MenuFragment extends BaseFragment implements AdapterView.OnItemClic
                 to = new ScaleChargeFragment();
                 break;
             case 1:
-                to = new BaseFragment();
+                to = new FormFragment();
                 break;
             case 2:
                 to = new SettingFragment();

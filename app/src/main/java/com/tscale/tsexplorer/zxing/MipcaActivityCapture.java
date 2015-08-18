@@ -1,6 +1,5 @@
 package com.tscale.tsexplorer.zxing;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.tscale.tsexplorer.R;
-import com.tscale.tsexplorer.base.SwipeBackActivity;
 import com.tscale.tsexplorer.zxing.camera.CameraManager;
 import com.tscale.tsexplorer.zxing.decoding.CaptureActivityHandler;
 import com.tscale.tsexplorer.zxing.decoding.InactivityTimer;
@@ -28,6 +26,7 @@ import com.tscale.tsexplorer.zxing.view.ViewfinderView;
 import java.io.IOException;
 import java.util.Vector;
 
+import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
 /**
@@ -35,8 +34,18 @@ import roboguice.inject.InjectView;
  *
  * @author Ryan.Tang
  */
-public class MipcaActivityCapture extends SwipeBackActivity implements Callback {
+public class MipcaActivityCapture extends RoboFragmentActivity implements Callback {
 
+    private static final float BEEP_VOLUME = 0.10f;
+    private static final long VIBRATE_DURATION = 200L;
+    /**
+     * When the beep has finished playing, rewind to queue up another one.
+     */
+    private final OnCompletionListener beepListener = new OnCompletionListener() {
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            mediaPlayer.seekTo(0);
+        }
+    };
     private CaptureActivityHandler handler;
     @InjectView(R.id.viewfinder_view)
     private ViewfinderView viewfinderView;
@@ -46,7 +55,6 @@ public class MipcaActivityCapture extends SwipeBackActivity implements Callback 
     private InactivityTimer inactivityTimer;
     private MediaPlayer mediaPlayer;
     private boolean playBeep;
-    private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
 
     /**
@@ -200,8 +208,6 @@ public class MipcaActivityCapture extends SwipeBackActivity implements Callback 
         }
     }
 
-    private static final long VIBRATE_DURATION = 200L;
-
     private void playBeepSoundAndVibrate() {
         if (playBeep && mediaPlayer != null) {
             mediaPlayer.start();
@@ -211,16 +217,6 @@ public class MipcaActivityCapture extends SwipeBackActivity implements Callback 
             vibrator.vibrate(VIBRATE_DURATION);
         }
     }
-
-    /**
-     * When the beep has finished playing, rewind to queue up another one.
-     */
-    private final OnCompletionListener beepListener = new OnCompletionListener() {
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            mediaPlayer.seekTo(0);
-        }
-    };
-
 
     public void onBackPress(View v) {
         setResult(RESULT_CANCELED);

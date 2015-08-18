@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tscale.tsexplorer.R;
-import com.tscale.tsexplorer.base.SwipeBackActivity;
 import com.tscale.tsexplorer.scaletask.FixProductTask;
 import com.tscale.tsexplorer.util.AsyncCallBackListener;
 import com.tscale.tsexplorer.zxing.MipcaActivityCapture;
@@ -20,12 +19,13 @@ import com.tscale.tsexplorer.zxing.MipcaActivityCapture;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
 /**
  * Created by rd-19 on 2015/7/25.
  */
-public class ProductDetailsFix extends SwipeBackActivity implements View.OnClickListener {
+public class ProductDetailsFix extends RoboFragmentActivity implements View.OnClickListener {
 
     private static final int CAMERA_REQUEST = 10;
     private String id;

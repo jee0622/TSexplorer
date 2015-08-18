@@ -23,4 +23,18 @@
         <item>@mipmap/option_icon_add</item>
         <item>@mipmap/option_icon_del</item>
     </integer-array>
+
+    <string-array name="form_grid_item_text">
+        <item>@string/report_plu</item>
+        <item>@string/report_suspend</item>
+        <item>@string/report_details</item>
+        <item>@string/report_saler</item>
+    </string-array>
+
+    <integer-array name="form_grid_item_img">
+        <item>@mipmap/report_plu</item>
+        <item>@mipmap/report_suspend</item>
+        <item>@mipmap/report_details</item>
+        <item>@mipmap/report_saler</item>
+    </integer-array>
 </resources>

@@ -20,11 +20,38 @@ import java.sql.Statement;
 
 public class SQLUtil {
 
-    public static String TABLE_NAME = "tab_product";
+    public static String TAB_PRODUCT = "tab_product";
 
-    public static String MYSQL_QUERY = "SELECT * FROM " + TABLE_NAME;
+    public static String TAB_CHANGE = "tab_change";
 
-    public static String MYSQL_DETAILS_WITHOUT_ID = "SELECT * FROM " + TABLE_NAME + " WHERE _id = ";
+    public static String TAB_BAR_REPORT = "tab_bar_report";
+
+    public static String MYSQL_QUERY = "SELECT * FROM " + TAB_PRODUCT;
+
+    public static String MYSQL_DETAILS_WITHOUT_ID = "SELECT * FROM " + TAB_PRODUCT + " WHERE _id = ";
+
+    public static String PLU_REPORT = "SELECT " +
+            "\treport_product,\n" +
+            "\treport_price,\n" +
+            "\tCOUNT(1) AS 'count',\n" +
+            "\tSUM(report_net) AS 'total_net',\n" +
+            "\tSUM(report_total) AS 'total_price'\n" +
+            "FROM\n" +
+            TAB_BAR_REPORT +
+            "GROUP BY\n" +
+            "\treport_product";
+    public static String SALE_REPORT = "SELECT\n" +
+            "\tsale.suspend_num,\n" +
+            "\tpro.product_name,\n" +
+            "\tsale.weight,\n" +
+            "\tsale.sale_price,\n" +
+            "\tsale.sale_total,\n" +
+            "\tsale.add_time\n" +
+            "FROM\n" +
+            "\ttemp_tab_sale sale\n" +
+            "INNER JOIN tab_product pro ON sale.product_num = pro.product_num\n" +
+            "ORDER BY\n" +
+            "\tsuspend_num;";
 
     public static int CONNECTION_ERROR = 1;
 
@@ -186,7 +213,7 @@ public class SQLUtil {
         }
 
         Statement statement = null;
-        String sql = "UPDATE " + TABLE_NAME + " SET " + key + " = '" + value + "' where _id = " + id + ";";
+        String sql = "UPDATE " + TAB_PRODUCT + " SET " + key + " = '" + value + "' where _id = " + id + ";";
         Log.d("fix", sql);
         try {
             statement = conn.createStatement();
@@ -213,14 +240,14 @@ public class SQLUtil {
         try {
             statement = conn.createStatement();
             if (statement != null) {
-                resultSet = statement.executeQuery("SELECT MAX(product_num) FROM " + TABLE_NAME + " ;");
+                resultSet = statement.executeQuery("SELECT MAX(product_num) FROM " + TAB_PRODUCT + " ;");
                 resultSet.next();
                 max_product_num = resultSet.getInt(1) + 1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String sql = "INSERT INTO " + TABLE_NAME +
+        String sql = "INSERT INTO " + TAB_PRODUCT +
                 "(product_name,name_spell,product_num,price,unit_text,abbr,abbr_spell,barcode) " +
                 "VALUES('" + product.getProduct_name() + "','" + product.getName_spell() + "'," + max_product_num +
                 "," + product.getPrice() + ",'" + product.getUnit_text() + "','" + product.getAbbr() + "','" +
@@ -245,4 +272,56 @@ public class SQLUtil {
 
         return execResult;
     }
+
+
+    public static JSONArray queryForm(Connection conn) {
+
+        JSONArray array = new JSONArray();
+
+        if (conn == null) {
+            return array;
+        }
+
+        Statement statement = null;
+        ResultSet result = null;
+        String sql = "SELECT * FROM " + TAB_BAR_REPORT;
+        try {
+            statement = conn.createStatement();
+            Log.d("SQLUtil", sql);
+            result = statement.executeQuery(sql);
+            if (result != null && result.first()) {
+                while (!result.isAfterLast()) {
+                    JSONObject object = new JSONObject();
+                    try {
+                        object.put("report_product", result.getInt("report_product"));
+                        object.put("report_price", result.getDouble("report_price"));
+                        object.put("report_total", result.getDouble("report_total"));
+                        object.put("report_net", result.getDouble("report_net"));
+                        array.put(object);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    result.next();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) {
+                    result.close();
+                    result = null;
+                }
+                if (statement != null) {
+                    statement.close();
+                    statement = null;
+                }
+
+            } catch (SQLException sqle) {
+
+            }
+        }
+        return array;
+    }
+
 }
